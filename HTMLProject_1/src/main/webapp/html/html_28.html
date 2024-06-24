@@ -1,0 +1,121 @@
+<!-- 
+	ML (MarkUp Language) => 브라우저에서 실행 가능
+	- HTML / XM : 주로 웹에서 사용
+	- WML / HDML : 무선(모바일)
+	- VML : 음성
+	
+	1. 웹 동작
+	   브라우저 (사용자 요청) ==========> 웹서버 (아파치-테스트용 서버(톰캣)), IIS, JEUS)
+	2. 사용도구
+	   1) 브라우저 : 크롬, 파이어폭스 => HTML5버전 호환 => 오페라가 HTML5주도
+	      => 클라이언트에서 실행
+	   2) 웹 서버 : 톰캣 내부의 웹서버(테스트용-50명까지만)
+	      => 클라이언트 요청에 대한 처리결과를 HTML로 전송
+	   3) 웹 컨테이너 : 다른 프로그램 언어와 연결된 경우 => 톰캣의 역할
+	                 톰캣 : Java를 컴파일해서 HTML을 메모리에 저장
+	   4) 데이터베이스 : 오라클 / MySQL => 실제 사이트에 출력할 데이터를 저장하는 장소
+	   5) 편집기 : 이클립스(Back), VScode(Front), 웹스톰,아톰(JavaScript)
+	   
+	   
+	웹 동작
+	 1) 브라우저에서 사용자가 요청
+	 2) 웹 서버에서 요청받아 해당 파일을 브라우저로 전송
+	    => 해당 파일을 브라우저에 한줄씩 출력 => 인터프리터 방식
+	       HTML의 단점 - 에러가 없다
+	    - 사용자가 HTML 요청시에는 웹 서버에서 파일을 찾아서 해당 사용자 브라우저로 전송 ex) index.html
+	      jsp, php, asp => 번역 => html로 변환 후 전송 ===> 톰캣
+	    - 에러 출력
+	       1) 파일이 없는 경우 : 404
+	       2) 자바 번역 오류, 소스코딩 문제 : 500
+	       3) 서버 접근 거부 : 403
+	       4) 기타 : 415, 412(encoding), 400(bad request-전송값 오류)
+	    
+	1.HTML / CSS => Only 화면디자인 (데이터관리 불가)
+	2.JavaScript => 사용자 요청에 대한 이벤트 처리
+	                라이브러리 : JQuery(Ajax), VueJS, ReactJS, NextJS, TypeScript
+	3.Java => 데이터 관리, 브라우저로 데이터를 전송
+	4.Oracle => 사이트에 필요한 데이터 저장, 공유
+	
+	HTML/CSS/JavaScript + Java => JSP + Database
+	
+	31page 웹표준
+	HTML5 + CSS3 + JavaScript ES6(람다식, 변수 var->let, JSON 중심)
+	JSON : JavaScript Object Nontation 자바스크립트 객체 표현법
+	
+	32page
+	HTML : 웹페이지 구성 (화면UI)
+	CSS : 디자인
+	JavaScript : 사용자 요청에 대한 처리(반응), 이벤트
+	
+	HTML5 주요기능
+	- HTML4 + 멀티미디어 - <video> <audio>
+		    + 그래픽 - <canvas>
+		    + 통신 - WebSocket, Thread
+    - 시맨틱 태그 사용 - <object> : HTML4, 추상적
+		             <video> : HTML5, 검색편리, 누구나 알아볼 수 있게 만든 태그
+				   - 지능형 웹
+	
+	Chapter 2장 기본구조와 작성법
+	1. HTML 기본용어
+		ML : 태그 + 속성으로 만들어진 언어
+	   - 태그 <태그명>
+	     1) 태그의 종류
+	        - 여는 태그 : <태그명> 
+	        - 닫는 태그 : </태그명>
+	        - 독립 태그 : <태그명/>
+	      *** HTML은 사용자 정의 태그가 없다
+	          기능 / 화면출력 모양
+	        - 값을 가지고 있는 태그 : <태그명>값</태그명>
+	                             <h1>Hello</h1>
+	                             <font>Hello</font>
+	        - 값이 없는 태그 : <br> 줄바꿈
+	                        <hr> 구분선
+	                        <input> 입력창
+	                        <img> 이미지
+	      *** 태그명, 속성명 - 기본 소문자 권장(대소문자 구분X)
+	          한줄씩 번역해서 출력 : 인터프리터
+	          태그상에서 오류가 없다 => 나중에 수정하기 어려울 수 있다
+	        
+	   - 속성 : 사용자 정의 속성 가능
+	           <태그명 속성명=값, 속성명=값...>
+	           ex) <a href="">
+				   <img src="" alt=""> 
+				
+	54page HTML형식
+	<!DOCTYPE html> => HTML버전, 적힌 버전이 없는 경우 HTML5
+	<html> => 대소문자 구분X, 소문자 권장, 들여쓰기 기본, HTML문서 시작
+	<head> => 설정파일, 자바스크립트, CSS
+	<meta charset="UTF-8"> => 한글 변환, 시작과 동시 화면이동, 키워드 등록, 모바일 크기 지정
+	<link> => css파일 읽기
+	<script></script> => 자바스크립트, 이벤트
+	<style></style> => css적용
+	<title>Insert title here</title> => 브라우저 이름부여
+	</head>
+	<body>
+		=> 실제 브라우저에 출력하는 태그
+	</body> => 화면 출력 종료
+	</html> => HTML 종료
+	    
+-->
+<!DOCTYPE html> <!-- 웹 브라우저에 HTML5문서라는 것을 알려준다, 도움말 지원 -->
+<html> <!-- 문서시작 -->
+<head> <!-- CSS, JavaScript 로드 -->
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css.css"> <!-- 외부 css 불러오기 -->
+	<title>Insert title here</title>
+	<!-- 내부 CSS
+	<style>
+		h1{
+			color:rgb(29, 58, 163);
+		}
+	</style>
+	-->
+</head>
+<body> <!-- 화면구현 시작 -->
+	<h1>Hello HTML5!!</h1> <!-- 제목 h1~h6, h3기본, bold포함, block태그 -->
+	<!--
+		block 태그 => System.out.println() h1, li
+		inline 태그 => System.out.print() img, a
+	-->
+</body>
+</html>
