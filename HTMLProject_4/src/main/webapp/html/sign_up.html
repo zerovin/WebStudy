@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<style>
+	.tt_box{
+		text-align:center;
+	}
+	h2{
+		position:relative;
+		display:inline-block
+	}
+	h2::after{
+		content:'';
+		width:65px;
+		height:3px;
+		background:tomato;
+		position:absolute;
+		top:100%;
+		left:0;
+	}
+	form{
+		margin:0 auto;
+	}
+	tr{
+		height:30px;
+	}
+	th{
+		background:#a9a9a9;
+		color:#fff;
+		font-weight:bold;
+		padding:5px;
+	}
+	input:not[type="radio"], label{
+		height:25px;
+	}
+	button, input[type="button"]{
+		border:none;
+		padding:5px;
+		font-weight:bold;
+		height:25px;
+		border-radius:5px;
+	}
+	.check{
+		background:cornflowerblue;
+	}
+	.postfind{
+		background:tomato;
+	}
+	.join{
+		background:yellowgreen;
+	}
+	.cancel{
+		background:gold;
+	}
+	textarea{
+		resize:none;
+	}
+</style>
+</head>
+<body>
+	<div class="tt_box">
+		<h2>회원가입</h2>	
+	</div>
+	<form style="width:600px; border:2px solid #000; padding:20px;">
+		<table>
+			<tr>
+				<th width="20%" align="right">
+					<label for="user_id">ID</label>
+				</th>
+				<td>
+					<input type="text" id="user_id" name="user_id">
+					<input type="button" value="중복체크" class="check">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="user_pw">비밀번호</label>
+				</th>
+				<td>
+					<input type="password" id="user_pw" name="user_pw">
+					<input type="password" id="user_pw2" name="user_pw2" placeholder="재입력">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="user_name">이름</label>
+				</th>
+				<td>
+					<input type="text" id="user_name" name="user_name">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<p>성별</p>
+				</th>
+				<td>
+					<input type="radio" id="man" name="gender">
+					<label for="man">남자</label>
+					<input type="radio" id="woman" name="gender">
+					<label for="woman">여자</label>
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="birth">생년월일</label>
+				</th>
+				<td>
+					<input type="date" id="birth" name="birth">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="email">이메일</label>
+				</th>
+				<td>
+					<input type="email" id="email" name="email">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="post">우편번호</label>
+				</th>
+				<td>
+					<input type="text" id="post" name="post">
+					<input type="button" value="우편번호 검색" class="postfind">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="address">주소</label>
+				</th>
+				<td>
+					<input type="text" id="address" name="address">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="address2">상세주소</label>
+				</th>
+				<td>
+					<input type="text" id="address2" name="address2">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="phone">전화번호</label>
+				</th>
+				<td>
+					<select>
+						<option value="010">010</option>
+						<option value="010">011</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+					</select>
+					<input type="tel" id="phone" name="phone">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" align="right">
+					<label for="info">소개</label>
+				</th>
+				<td>
+					<textarea rows="10" cols="50"></textarea>
+				</td>
+			</tr>
+		</table>
+		<center width="800">
+			<button class="join">회원가입</button>
+			<input type="button" value="취소" class="cancel">
+		</center>
+	</form>
+</body>
+</html>

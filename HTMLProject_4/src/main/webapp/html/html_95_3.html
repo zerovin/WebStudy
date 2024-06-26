@@ -1,0 +1,58 @@
+<!--
+	입력양식 그룹
+	<fieldset>
+	<label>
+	<legend>
+		
+	입력 양식
+	***type=text => 검색
+	   type=password
+	***type=button, submit
+	   type=radio, checkbox
+	   <select>
+	   <textarea>
+	   type=number => 수량
+	   type=file => 파일 업로드 / 등록
+	   
+	<form method="POST"> : 전송할 내용을 한번에 모아 처리
+		GET : URL을 통해서 서버로 입력값 전송, 값 노출
+		POST : 내부 네트워크로 전송, 보안이 뛰어남
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>관련된 입력 양식을 그룹화</h1>
+	<fieldset>
+		<legend>개인정보</legend>
+		<table width="500">
+			<tr>
+				<th width="20%"><label for="name">이름</label></th>
+				<td width="80%"><input type="text" id="name" size="15"></td>
+			</tr>
+			<tr>
+				<th width="20%"><label for="addr">주소</label></th>
+				<td width="80%"><input type="text" id="addr" size="35"></td>
+			</tr>
+			<tr>
+				<th width="20%"><label for="email">이메일</label></th>
+				<td width="80%"><input type="email" id="email" size="35"></td>
+			</tr>
+			<tr>
+				<th width="20%"><label for="content">소개</label></th>
+				<td width="80%"><textarea rows="10" cols="40"></textarea></td>
+			</tr>
+			<!--
+				속성값 입력시 공백X
+				<input type=text value=Hong Gil Dong> (X)
+				<input type="text"" value="Hong Gil Dong"> (O)
+			-->
+		</table>
+	</fieldset>
+	<input type=text value=Hong Gil Dong> <!-- Hong -->
+	<input type="text" value="Hong Gil Dong">  <!-- Hong Gil Dong -->
+</body>
+</html>

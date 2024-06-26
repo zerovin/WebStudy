@@ -1,0 +1,60 @@
+<!--
+	미디어태그
+	   이미지 / 동영상 / 음성
+	   이미지 <img> 독립 태그, 닫는 태그가 없다
+	              속성 - src : URL, 파일
+	                    title : alt
+	html
+	  a.html
+	  a.jpg
+	  b.jpg
+	=> <img src="a.jpg">
+	
+	html
+	  a.html
+	  images
+	    a.jpg
+	    b.jpg
+	=> <img src="images/a.jpg">
+	
+	html
+	  a.html
+	images 
+      a.jpg
+    => <img src="../images/a.jpg">
+    
+    html
+      input
+        a.html
+    images
+      a.jpg
+    => <img src="../../images/a.jpg">
+    
+    동영상 <video> / 음성 <audio> => <embed>
+    <embed>
+    속성 - src : 동영상 파일, URL
+          
+    입력태그
+    화면분할태그 / 시맨틱
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>URL 이미지 출력</h1>
+	<img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88297/88297_320.jpg" width="150" height="200" title="북극백화점의 안내원">
+	<h1>파일명을 이용한 이미지 출력</h1>
+	<img src="../images/m1.jpg" width="150" height="200">
+	<img src="../images/m3.jpg" width="150" height="200">
+	<img src="../images/m2.jpg" width="150" height="200">
+	<img src="../images/m4.jpg" width="150" height="200">
+	<img src="../images/m5.jpg" width="150" height="200">
+	<img src="../images/m6.jpg" width="150" height="200">
+	<img src="../images/m7.jpg" width="150" height="200">
+	<h1>동영상 실행</h1>
+	<embed src="http://youtube.com/embed/zGIrVjEbRNM\u0026pp=ygUJ7JWE7J2067iM" width="500" height="450">
+</body>
+</html>
