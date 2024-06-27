@@ -1,0 +1,37 @@
+<!--
+	선택자 - 태그, 전체, 아이디, 클래스
+	
+	속성 선택자
+	  - 선택자[속성명=값] 속성이 값인 선택자 equals
+	  - 선택자[속성명^=값] 속성이 값으로 시작하는 선택자 startsWith
+	  - 선택자[속성명$=값] 속성이 값으로 끝나는 선택자 endsWith
+	  - 선택자[속성명*=값] 속성이 값을 포함하는 선택자 contains
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	input[type="submit"]{ /* type이 submit인 경우 */
+		border-radius:10px;
+	}
+	input[type^="b"]{ /* type이 b로 시작하는 경우 */
+		background:red;
+	}
+	input[type$="t"]{ /* type이 t로 끝나는 경우 */
+		background:cyan;
+	}
+	input[type*="b"]{ /* type에 b가 포함된 경우 */
+		background:blue;
+		color:#fff;
+	}
+</style>
+</head>
+<body>
+	<input type="text" size="20"><br>
+	<input type="button" value="Click"><br>
+	<input type="submit" value="전송"><br>
+	<input type="password" size="20">
+</body>
+</html>

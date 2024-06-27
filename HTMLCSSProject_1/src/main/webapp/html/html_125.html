@@ -1,0 +1,70 @@
+<!--
+	CSS - 화면 UI
+	 1. Selector 선택자 : 태그를 선택
+	
+	태그명{
+		속성:값, 
+		속성:값
+		/* 주석 */
+	}
+	
+	내부 CSS : 파일 1개에 대한 CSS적용
+	          <head>
+				  <style>
+					  CSS구현
+				  </style>
+			  </head>
+	외부 CSS : 여러개의 파일이 공통으로 사용되는 CSS, 파일로 제작
+	          .css 파일 제작
+	          <head>
+				  <link rel="stylesheet" href="파일명|URL">
+			  </head>
+	인라인 CSS : 태그 1개에 대한 CSS적용
+	           <img src="" alt="" style="">
+	           모든 HTML태그는 style 속성을 가지고 있다
+	
+	1. 선택자 - 태그를 구분
+	          CSS, JavaScript, Jsoup에서 사용
+	   - 전체 선택자 : * 
+	                *{}
+	   - 태그 선택자 : 태그명 => 같은 태그명이 많음
+	                태그명{}
+	   - ID 선택자 : 각 태그의 id는 중복 불가, 중복없는 구분자
+	               #ID명{}
+	   - class 선택자 : 중복가능, 같은 css 적용시 사용
+	                  .class명{}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/*
+		태그명.클래스명
+		태그명#아이디명
+	*/
+	h1.h{
+		color:slateblue;
+	}
+	#a{
+		color:tomato;
+	}
+	#b{
+		color:olivedrab;
+	}
+	#c{
+		color:goldenrod;
+	}
+	
+</style>
+</head>
+<body>
+	<div class="h">Hello CSS</div>
+	<h1 class="h">Hello CSS</h1>
+	<h1 class="h">Hello CSS</h1>
+	<h1 id="a">Hello CSS</h1>
+	<h1 id="b">Hello CSS</h1>
+	<h1 id="c">Hello CSS</h1>
+</body>
+</html>
