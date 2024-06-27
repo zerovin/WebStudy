@@ -1,0 +1,124 @@
+<!--
+	HTML : 브라우저에서 실행되는 언어
+	ML MarkUp Language 태그+속성
+	<태그명 속성명=값>
+	HTML - 태그와 속성이 정해져 있다, 정적페이지
+	       화면 UI
+	XML - 태그와 속성을 직접 제작, 사용자 정의, 확장된 MarkUp Language
+	      문서 저장, 환경설정 ex) server.xml, application.xml
+	      서버단에서 많이 사용 ex) MyBatis, Spring
+	JDBC - 오라클 데이터베이스 연결
+	Parsing - HTML/XML/JSON에서 데이터 추출, 크롤링
+	
+	1.HTML
+	  - 특징 : 정적페이지, 태그 고정 => 표준화
+	          이미 제작된 상태 => 태그, 속성, 출력상태 암기
+	  - 태그형식 : 여는 태그 - <태그>
+	             닫는 태그 - </태그>
+	             독립 태그 - <태그/>
+	  - 태그종류 : 문자 출력
+	              - <b> : bold
+			      - <strong> : 강조
+			      - <h1~h6> : 제목
+				  - <br> : 줄바꿈
+				  - <p> : 문단
+			      - sup : 위첨자
+	             목록 출력
+	              - <ul> : 순서가 없는 목록
+				    <li> : 목록 리스트
+				  - <dl> : data list
+					<dt> : 정의 제목
+				    <dd> : 정의 설명
+				  - <table> : 표
+					<tr> : row
+				    <th> : head
+				    <td> : data
+	             멀티미디어
+	              - <img> : 이미지, gif, jpg, png
+	              - <embed> : 동영상
+				  - <iframe> : 동영상, react vue에서는 <embed>불가
+				               JSP include - HTML파일 특정부분에 다른 HTML추가
+				  - <video> : 동영상
+				  - <audio> : 오디오
+			     사용자 입력창
+			      - <input> : text - 한줄입력
+			                  password - 비밀번호
+			                  file - 파일 업로드
+			                  color - 팔레트
+			                  date - 달력
+			                  hidden - 숨기기
+			                  radio - 라디오 버튼 name필수, 하나만 선택가능
+			                  checkbox - 체크박스, 여러개 선택가능
+			                  range - slider bar, max, min지정
+			                  number - 숫자선택, spinner, max, min지정
+			                           ex)년도, 월, 수량
+			                  image - 전송기능
+			                  button - 버튼 형성, 스크립트로 제어
+			                  submit - 서버로 데이터 전송, 반드시 <form>안에
+				  - <form> : 데이터를 모아서 한번에 서버로 전송
+					         method 속성 - 전송 방식 지정
+					                      GET : URL뒤에 데이터를 첨부해서 전송, 데이터 노출, 보안 취약
+					                      POST : 내부 네트워크를 통해서 전송, 보안
+					         action 속성 - 전송할 파일 지정
+					     *** 자바에서는 메소드, 생성자의 매개변수를 이용해서 데이터 전송
+					         HTML / JSP는 메소드X => URL이용해서 전송
+					         http://localhost/HTMLProject_5/html/html_1.html
+					         ==== 서버정보 ==== ======= 사용자요청정보(URI) =======
+					         /HTMLProject_5/html/html_1.html?page=1
+					                             =========== ======
+					     데이터 받는 파일, 전송값 출력 바로 앞에 출력   전송값
+			      - <button> : submit
+			      - <select> : 한개 선택
+					           multiple 속성 - 여러개 선택
+					<option> : 데이터 저장
+			      - <textarea> : 여러줄 입력
+					             <textarea></textarea> 사이공백주의
+					             width-cols, height-rows
+				 기타
+				  - <fieldset> : 입력창 그룹
+			      - <legend> : 입력창 그룹 이름
+				  - <label> : <input> 이름
+				 화면분할
+				  - <div> : 전체 화면분할
+				  - <span> : 부분 CSS적용
+				  
+			      
+   *** 사이트개발에 가장 많이 등장 <a href=""></a> : 앵커 태그, 화면이동
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<center>
+		<table border="1" bordercolor="black" width="800" height="600">
+			<tr>
+				<td colspan="2" height="100">
+					<iframe src="header.html" width="800"></iframe>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="80">
+					<iframe src="nav.html" width="800"></iframe>
+				</td>
+			</tr>
+			<tr>
+				<td width="200" height="320">
+					<iframe src="aside.html" width="200" height="320"></iframe>
+				</td>
+				<td width="600" height="320">
+					<iframe src="section.html" width="600" height="320"></iframe>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="100">
+					<iframe src="footer.html" width="800"></iframe>
+				</td>
+			</tr>
+		</table>
+	</center>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!--
+	HTML면접 GET/POST, 시맨틱
+	시맨틱 태그 : 검색이 쉽게 만들어준 태그명, 태그에 의미부여
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#wrap{
+		width:800px;
+		height:600px;
+		margin:0 auto; /*가운데 정렬*/
+		background:red;
+	}
+	header{
+		width:800px;
+		height:100px;
+		background:cyan;
+	}
+	aside{
+		width:30%;
+		height:400px;
+		background:green;
+		float:left;
+	}
+	section{
+		width:70%;
+		height:400px;
+		background:yellow;
+		float:left;
+	}
+	footer{
+		width:800px;
+		height:100px;
+		background:blue;
+		clear:both;
+	}
+</style>
+</head>
+<!--
+	==============================
+	     header (로고, 검색창)
+	==============================
+	        |
+	        |
+	 aside  |   section (주 내용) 
+	        |
+	        |
+	==============================
+	       footer (회사정보)
+	==============================
+-->
+<body>
+	<div id="wrap">
+		<!--
+		<div id="header"></div>
+		<div id="aside"></div>
+		<div id="section"></div>
+		<div id="footer"></div>
+		-->
+		<header></header>
+		<aside></aside>
+		<section></section>
+		<footer></footer>
+	</div>
+</body>
+</html>
