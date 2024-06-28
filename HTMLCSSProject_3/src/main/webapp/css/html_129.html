@@ -1,0 +1,59 @@
+<!--
+	기본선택자 129page
+	선택자{
+		속성:값;
+		속성:값;
+	}
+	전체선택자 : * 
+	태그선택자 : 태그명
+	ID선택자 : id명 중복불가
+	class선택자 : 중복가능, 공통적용 CSS
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/*
+	h1{
+		color:royalblue;
+	}
+	h1:first-child{
+		color:blue;
+	}
+	h1:nth-child(2n){
+		color:tomato;
+	}
+	h1:last-child{
+		color:green;
+	}
+	h1:nth-child(odd){
+		color:slateblue;
+	}
+	h1:nth-child(even){
+		color:plum;
+	}
+	*/
+	.yellow{
+		color:gold;
+	}
+	#red{
+		color:tomato;
+	}
+</style>
+</head>
+<body>
+	<h1>Hello CSS</h1>
+	<h1 class="yellow">Hello CSS</h1>
+	<h1 class="yellow">Hello CSS</h1>
+	<h1>Hello CSS</h1>
+	<h1 id="red">Hello CSS</h1>
+	<!-- ID중복 - CSS에서는 처리가능, 스크립트 오류 -->
+	<h1 class="yellow">Hello CSS</h1>
+	<h1 class="yellow">Hello CSS</h1>
+	<h1>Hello CSS</h1>
+	<h1 class="yellow">Hello CSS</h1>
+	<h1>Hello CSS</h1>
+</body>
+</html>

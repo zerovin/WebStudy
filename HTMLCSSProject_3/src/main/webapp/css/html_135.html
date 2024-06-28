@@ -1,0 +1,39 @@
+<!--
+	속성 선택자 => 태그가 가지고 있는 속성값으로 선택
+	태그명[속성명=값] => equals
+	태그명[속성명^=값] => startsWith
+	태그명[속성명$=값] => endsWith
+	태그명[속성명*=값] => contains
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/*
+	input[size$="0"]{
+		background:red;
+	}
+	*/
+	input[type*="e"]{
+		background:red;
+	}
+	img[src^="https"]{
+		border:3px solid blue;
+	}
+</style>
+</head>
+<body>
+	<input type="text" size="20"><br>
+	<input type="password" size="10"><br>
+	<input type="file" size="30"><br>
+	<input type="date" size="30"><br>
+	<input type="number" size="10"><br>
+	<img src="http">
+	<img src="http">
+	<img src="https">
+	<img src="http">
+	<img src="https">
+</body>
+</html>
