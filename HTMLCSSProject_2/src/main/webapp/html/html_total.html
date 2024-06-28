@@ -1,0 +1,147 @@
+<!--
+	HTML5 형식
+	  <!DOCTYPE html> : HTML5 버전 사용을 브라우저에게 알림
+	                    html파일 첫째줄에 사용
+	                    .dtd 파일 => 표준화 w3c
+	                                MyBatis(XML), Spring 사용시 dtd파일 업로드
+	                    DOCTYPE => 이클립스 자동완성기 loose.dtd                   
+	    태그와 속성에 대한 정보 저장
+	      - 태그 정의
+	          <!ELEMENT html (header,body)>
+	          <!ELEMENT head (meta*, link*, style*, script*, title)>
+	          default - 반드시 한번만 사용
+	          * : 0번 이상
+	          ? : 0, 1번이상
+	          + : 1번 이상
+	          | : 선택
+	     - 속성 정의
+	         <!ATTLIST meta CDATA charset required>
+	     - Entity : 특수문자 변수
+	         <!ENTITY nbsp ' '> => &nbsp;
+	         <!ENTITY lt '<'> => &lt;
+      <html>
+		  <head> : 설정파일등록
+			  <meta> : 한글변환, 화면이동, 디바이스 크기, 키워드 등록
+			  <link> : css파일 읽기
+			  <script> : 동적으로 변경 (이벤트 - 사용자 행위에 대한 처리)
+			  <title> : 브라우저(타이틀바)에 이름부여
+			  <style> : 화면 디자인
+		   ** HTML(태그+속성)+CSS(디자인)+JavaScript(요청처리)
+		      ======================  ==================
+		               표준화            표준화X => 라이브러리로 표준화 jQuery, Vue, React 
+		  </head>
+		  <body>
+			  화면에 출력하는 내용 <html>,<head>,<body> 생략하면 <body>자동인식
+		  </body>
+	  </html>
+	  
+	  ML(MarkUp Language) => 태그+속성
+	    <태그명 속성=값></태그명> => XML도 동일, 단 XML은 사용자정의태그
+	  
+	  화면에 출력하는 데이터 저장 위치
+	    <태그>출력내용</태그> => <h1></h1>
+	    <태그 속성="출력내용"> => <img src=""> <a href="">
+			
+ 	  태그 종류
+ 	    <태그></태그>
+ 	    <태그/> => <br> <img> <input>
+ 	   
+ 	**DOM (Document Object Model)
+ 	   - 메모리에 저장시 트리형태로 저장
+ 	     => 태그를 많이 사용하면 속도저하
+ 	        수정 / 새로고침시 메모리 지우고 다시 저장
+ 	        속도향상, 깜빡임 방지
+ 	      
+ 	  화면에 출력하는 태그
+ 	    태그명, 속성, 어떤모양으로 출력되는지 주의
+ 	    모든 태그 공통 속성 - id, class, name, style, width, height
+ 	  **태그 사용시 주의점
+ 	     - 태그명, 속성명은 소문자 권장
+ 	     - 트리 형태 => 들여쓰기 주의
+ 	    1.텍스트 관련 태그(문자)
+ 	      <h1> ~ <h6> : 제목, bold, block
+	      <b> : bold, inlin
+		  <i> : 이탤릭
+		  <sub>, <sup> : 아래첨자, 위첨자
+		  <address> : 주소출력, 이탤릭체
+		  <small> : 작은 글자
+		  <hr> : 구분선, block
+		  <ins> : 밑줄
+		  <del> : 가운데 라인
+		  <mark> : 형광펜
+		  <blockquote> : 인용부호
+		  <p> : 단락
+		  <pre> : 텍스트 공백 보존
+	    2.링크 태그 : 화면이동
+	      <a> : href="이동 URL주소"
+		3.멀티미디어 태그 : 동영상, 이미지 출력
+		  <img> : src=".gif|jpg|png|URL" / alt
+		  <embed> : src="동영상파일|youtube key"
+		  <iframe> : html파일 안에 다른 html파일, 동영상 추가 => include
+			         src="추가할 파일"
+	    4.목록 출력
+	      <ul> - <li> : 순서없는 목록
+		  <ol> - <li> : 순서있는 목록
+		  <dl> - <dt><dd> : 정의 목록
+		  <table> : 표
+			        <caption> : 테이블 제목
+				    <tr> : row
+					<th> <td> : 데이터 출력
+						        속성 - rowspan 세로병합
+						              colspan 가로병합
+	    5.입력 관련 태그
+	      <input> type="text" : 한줄 문자열
+	              type="password" : 비밀번호 입력
+	              type="file" : 파일 업로드, 다운로드
+	              type="number" : 숫자입력, spinner
+	              type="date" : 달력
+	              type="range" : 범위 내 선택, slider
+	              type="email" : 메일주소입력
+	              type="button" : 일반버튼
+	              type="submit" : 전송버튼
+	              type="reset" : 초기화
+	              type="radio" : 라디오 버튼
+	              type="checkbox" : 체크박스
+	      <select> - <option> : 셀렉트 박스
+			                    선택시 값 가지고 오기 option value=""
+	      <textarea> : 여러줄 입력, 태그사이 공백주의
+	 	  <button> : 전송버튼
+	    6.화면 분할
+	      <div> : block
+		  <span> : inline
+		  시멘틱 태그
+		  <header> : 헤더
+		  <nav> : 메뉴
+		  <section> : 섹션
+		  <aside> : 사이드
+		  <footer> : 푸터
+	    7.기타
+	      입력태그 그룹
+	      <fieldset>, <label>, <legend>
+	      CARD
+		  <figure>, <figcaption> : 이미지, 텍스트 연결
+	      이미지분할
+	      <map>		  
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	h1{
+		background:green;
+	}
+	span{
+		background:cyan;
+	}
+</style>
+</head>
+<body>
+	<h1>figure사용법</h1>
+	<figure>
+		<img src="m1.jpg" width="150" height="200">
+		<figcaption>인사이드 아웃2</figcaption>
+	</figure>
+</body>
+</html>
