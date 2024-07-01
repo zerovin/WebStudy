@@ -1,0 +1,76 @@
+<!--
+	1.display : none, block, inline, inline-block(width, height)
+	            table, table-row, table-col
+	2.border : border-width - border-top-width(style,color)
+	                          border-bottom-width(style,color)
+	                          border-left-width(style,color)
+	                          border-right-width(style,color)
+	           border-collapse
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="table.css">
+<title>Insert title here</title>
+<style>
+	.table_content{
+		margin:0 auto;
+	}
+	h1{
+		text-align:center;
+	}
+</style>
+</head>
+<body>
+	<h1>자유 게시판</h1>
+	<table class="table_content">
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>이름</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+		<tr class="dataTr">
+			<td class="tdcenter">1</td>
+			<td><a href="#">CSS로 테이블 디자인</a></td>
+			<td class="tdcenter">홍길동</td>
+			<td class="tdcenter">2024-07-01</td>
+			<td class="tdcenter">10</td>
+		</tr>
+		<tr class="dataTr">
+			<td class="tdcenter">1</td>
+			<td><a href="#">CSS로 테이블 디자인</a></td>
+			<td class="tdcenter">홍길동</td>
+			<td class="tdcenter">2024-07-01</td>
+			<td class="tdcenter">10</td>
+		</tr>
+		<tr class="dataTr">
+			<td class="tdcenter">1</td>
+			<td><a href="#">CSS로 테이블 디자인</a></td>
+			<td class="tdcenter">홍길동</td>
+			<td class="tdcenter">2024-07-01</td>
+			<td class="tdcenter">10</td>
+		</tr>
+	</table>
+	<table class="table_content">
+		<tr>
+			<td class="tdleft">
+				<select>
+					<option>이름</option>
+					<option>제목</option>
+					<option>내용</option>
+				</select>
+				<input type="text" size="15">
+				<button>검색</button>
+			</td>
+			<td class="tdright">
+				<button>이전</button>
+				<span>1 page / 10 pages</span>
+				<button>다음</button>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

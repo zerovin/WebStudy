@@ -1,0 +1,59 @@
+<!--
+	가시속성
+	display - block : 세로로 출력 => 태그가 한줄 전체 차치 => newLine
+	          inline : 가로로 출력 => newLine(X)
+	                   태그에 width/height 적용하지 않은 경우
+	          inline-block : width/height가 지정된 경우
+	          none : 화면에서 보이지 않게 만든다
+	          table / table-row / table-col / table-title
+	HTML 태그 중 - block : 목록, h1~h6, br, p, hr
+	           - inline : 입력input, select, textarea, button, strong, em, b, span
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div{
+		width:100px;
+		height:100px;
+		background:black;
+	}
+	span{
+		width:100px;
+		height:100px;
+		background:blue;
+	}
+	span:nth-of-type(2){
+		background:green;
+	}
+	span:nth-of-type(3){
+		background:red;
+	}
+</style>
+</head>
+<body>
+	<h1>block 속성 태그</h1>
+	<p>Java</p>
+	<h3>Oracle</h3>
+	<hr>
+	<ul>
+		<li>AAA</li>
+		<li>BBB</li>
+		<li>CCC</li>
+	</ul>
+	<ol>
+		<li>AAA</li>
+		<li>BBB</li>
+		<li>CCC</li>
+	</ol>
+	<div></div>
+	<h1>inline 속성 태그</h1>
+	<span>Hello</span>
+	<span>Hello</span>
+	<span>Hello</span>
+	<input type="text" size="20">
+	<button>클릭</button>
+</body>
+</html>

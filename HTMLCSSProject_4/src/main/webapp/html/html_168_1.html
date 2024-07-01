@@ -1,0 +1,55 @@
+<!--
+	1.단위
+	  px, % 백분율단위, em 배수단위
+	2.색상
+	  background-color:color_name, hex, rgb, rgba
+	3.URL
+	  background:url('경로명')
+	
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	p:nth-child(1){
+		background:red;
+	}
+	p:nth-child(2){
+		/* font-size:100%; */
+		font-size:1em;
+		background:rgb(168, 240, 238);
+	}
+	p:nth-child(3){
+		/* font-size:150%; */
+		font-size:1.5em;
+		background:rgb(255, 0, 0);
+	}
+	p:nth-child(4){
+		/* font-size:200%; */
+		font-size:2em;
+		background:#ff0000;
+	}
+	div{
+		background:url('ico_user.png') no-repeat;
+		width:500px;
+		height:500px;
+	}
+	h1{
+		color:#fff;
+		padding-top:250px;
+		padding-left:100px;
+	}
+</style>
+</head>
+<body>
+	<p>무려 '6번째 추가시간 극장골'... 이래서 발롱도르 후</p>
+	<p>홍명보 감독, KFA 작심 비판 "클린스만 학습효과 없</p>
+	<p>"환상적 5년" 韓 사랑했던 56승 외국인 컴백?..'치명적</p>
+	<p>"이렇게 빨리 발전하다니" 캐나다가 놀랐다..한국</p>
+	<div>
+		<h1>Hello background</h1>
+	</div>
+</body>
+</html>
