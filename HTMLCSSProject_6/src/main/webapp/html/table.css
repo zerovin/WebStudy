@@ -1,0 +1,49 @@
+@charset "UTF-8";
+.table_content{
+	border-top:2px solid #000;
+	border-bottom:1px solid #000;	
+	border-collapse:collapse; /* 이중라인 통합 */
+}
+/* 후손 => 여러개를 동시에 처리 th, td 공통 속성 정의 */
+.table_content th, .table_content td{
+	margin:0;
+	padding:8px;
+	font-size:9pt;
+}
+/* th만 가지고 가는 속성 */
+.table_content th{
+	background:#999;
+	color:#fff;
+	border:1px solid #000;
+}
+/* td만 가지고 가는 속성 */
+.table_content td{
+	border-bottom:1px dotted #666;
+}
+/* 정렬 */
+.table_content .tdcenter{
+	text-align:center;
+}
+.table_content .tdright{
+	text-align:right;
+}
+.table_content .dataTr:hover{
+	cursor: pointer;
+	background:#fc68;
+}
+.table_content a{
+	color:#000;
+	text-decoration: none;
+}
+.table_content a:hover{
+	color:green;
+	text-decoration: underline;
+}
+.table_content select{
+	margin-right:3px;
+}
+.table_content button,
+.table_content select,
+.table_content input[type="text"]{
+	border-radius:10px;
+}

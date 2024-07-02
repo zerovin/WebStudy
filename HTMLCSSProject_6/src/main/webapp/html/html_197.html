@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.wrap{
+		width:900px;
+		height:900px;
+		border:1px solid red;
+		position:relative;
+	}
+	.a{
+		position:absolute;
+	}
+	.a:nth-child(2){
+		right:0;	
+	}
+	.a:nth-child(3){
+		top:50%;
+		left:50%;
+		transform:translate(-50%, -50%);
+	}
+	.a:nth-child(4){
+		bottom:0;
+	}
+	.a:nth-child(5){
+		bottom:0;
+		right:0;
+	}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<img src="card1.png" class="a">
+		<img src="card2.png" class="a">
+		<img src="card3.png" class="a">
+		<img src="card4.png" class="a">
+		<img src="card5.png" class="a">
+	</div>
+</body>
+</html>

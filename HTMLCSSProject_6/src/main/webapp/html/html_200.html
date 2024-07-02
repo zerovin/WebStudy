@@ -1,0 +1,52 @@
+<!--
+	지정된 영역을 벗어난 경우
+	overflow : hidden / scroll
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	body > div{
+		width:400px;
+		height:100px;
+		position:relative;
+		border:2px solid black;
+		overflow-y:scroll;
+	}
+	.a{
+		width:100px;
+		height:100px;
+		position:absolute;
+	}
+	.a:nth-of-type(1){
+		background:lightcoral;
+		top:10px;
+		left:10px;
+		z-index:100;
+	}
+	.a:nth-of-type(2){
+		background:palegreen;
+		top:50px;
+		left:50px;
+		z-index:10;
+	}
+	.a:nth-of-type(3){
+		background:lightskyblue;
+		top:90px;
+		left:90px;
+		z-index:1;
+	}
+</style>
+</head>
+<body>
+	<h1>KBO, 6월 월간 MVP 후보 공개.. 전반기 '20-20'</h1>
+	<div>
+		<div class="a"></div>
+		<div class="a"></div>
+		<div class="a"></div>		
+	</div>
+	<h1>마틴골프, 양희영 프로 LPGA 메이저 우승으로</h1>
+</body>
+</html>

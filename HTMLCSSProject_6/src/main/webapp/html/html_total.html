@@ -1,0 +1,79 @@
+<!--
+	1.선택자
+	  - 태그별 CSS => CSS / 속성
+	    선택자 {속성:값;}
+	  - 태그별 이벤트(둥위, 자손, 후손선택자) => javascript
+	    $('선택자').이벤트(function(){});
+	  - 태그별 저장된 데이터 읽기(태그, id, class) => 크롤링
+	    - 정적 크롤링 : Jsoup => doc.select("선택자")
+	    - 동적 크롤링 : 셀레니움 => CSS와 동일한 선택자 사용
+	*** 모든 태그는 id, class 속성을 가지고 있다
+	  - 태그 : 태그명{속성:값;} 공통으로 적용되는 CSS
+	  - id : #id명{속성:값;} 중복이 없는 선택자
+	         태그명#id명{속성:값;}
+	  - class : .class명{속성:값;} 중복가능
+	            태그명.class명(속성:값;)
+	  - 속성 선택자
+	    태그명|id명|class명[속성명=값]{}
+	    *** 찾는 법
+	        [속성*=값] 속성중 값이 포함된 문자 : contains
+	        [속성=값] 같은 값 : equals
+	        [속성^=값] 시작 문자열 : startsWith
+	        [속성$=값] 끝나는 문자열 : endsWith
+	  - 동위 선택자
+	    인근태그 선택 + 형제선택자
+	    근처에 있는 모든 태그 ~ 인접형제
+	  - 자손, 후손 선택자
+	    자손 : 상위태그 > 찾는태그
+	    후손 : 상위태그 찾는태그
+	  - 가상 선택자
+	    태그명:hover mouseover
+	    태그명:focus
+	    태그명:enabled
+	    태그명:disabled
+	    태그명:first-child
+	    태그명:last-child
+	    태그명:nth-child(수열)
+	    
+	  
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	ul{
+		overflow:hidden;
+	}
+	li{
+		list-style:none;
+		float:left;
+		padding:15px;
+	}
+	li:first-child{
+		border-radius:10px 0px 0px 10px;
+	}
+	li:last-child{
+		border-radius:0px 10px 10px 0px;
+	}
+	li:nth-child(2n){
+		background:paleturquoise;
+	}
+	li:nth-child(2n+1){
+		background:antiquewhite;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li>첫번째</li>
+		<li>두번째</li>
+		<li>세번째</li>
+		<li>네번째</li>
+		<li>다섯번째</li>
+		<li>여섯번째</li>
+		<li>일곱번째</li>
+	</ul>
+</body>
+</html>
