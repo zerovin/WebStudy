@@ -1,6 +1,5 @@
 @charset "UTF-8";
 .table_content{
-	width:800px;
 	border-top:2px solid #000;
 	border-bottom:1px solid #000;	
 	border-collapse:collapse; /* 이중라인 통합 */
