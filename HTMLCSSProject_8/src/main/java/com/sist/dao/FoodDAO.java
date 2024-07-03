@@ -26,6 +26,16 @@ public class FoodDAO {
 	 *   상세보기 => VO
 	 *   총페이지, 검색개수...확인 => int
 	 *   조건, 아이디, 비번... => String
+	 *   
+	 *   1.데이터 설계 => DDL(CREATE, ALTER, RENAME, DROP, TRUNCATE)
+	 *   2.프로그램 구현 => DML
+	 *     SELECT : 목록출력 / 상세보기 / 데이터 검색
+	 *              => 페이징 - 인라인뷰
+	 *              => 예약/구매 - JOIN / SUBQUERY
+	 *              => 사용자 -----예약(매핌테이블)----- 맛집
+	 *     UPDATE : 조회수 증가 / 찜 증가 / 좋아요 증가
+	 *     DELETE : 회원탈퇴 / 구매취소 / 예약취소
+	 *     INSERT : 회원가입 / 장바구니 / 예약
 	 */
 	public List<FoodVO> foodListData(int page){
 		List<FoodVO> list=new ArrayList<FoodVO>();
@@ -58,6 +68,7 @@ public class FoodDAO {
 		}
 		return list;
 	}
+	
 	public int foodTotalPage() {
 		int total=0;
 		try {
@@ -74,5 +85,43 @@ public class FoodDAO {
 			dbConn.disConnection(conn, ps);;
 		}
 		return total;
+	}
+	
+	//상세보기
+	public FoodVO foodDetailData(int fno) {
+		FoodVO vo=new FoodVO();
+		try {
+			conn=dbConn.getConnection();
+			String sql="UPDATE food_house SET "
+					+ "hit=hit+1 "
+					+ "WHERE fno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, fno);
+			ps.executeUpdate();
+			
+			sql="SELECT fno, name, type, phone, address, theme, poster, content, score "
+					+ "FROM food_house "
+					+ "WHERE fno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, fno);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setFno(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setType(rs.getString(3));
+			vo.setPhone(rs.getString(4));
+			vo.setAddress(rs.getString(5));
+			vo.setTheme(rs.getString(6));
+			vo.setPoster(rs.getString(7).replace("https", "http"));
+			vo.setContent(rs.getString(8));
+			vo.setScore(rs.getDouble(9));
+			rs.close();
+		}catch(Exception ex) {
+			System.out.println("===== foodDetailData() 오류 =====");
+			ex.printStackTrace();
+		}finally {
+			dbConn.disConnection(conn, ps);
+		}
+		return vo;
 	}
 }
