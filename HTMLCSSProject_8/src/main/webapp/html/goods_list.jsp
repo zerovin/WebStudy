@@ -29,7 +29,7 @@
 	<div class="container">
 		<ul class="goods_list">
 		<%
-			for(GoodsVO vo:list){
+			for(GoodsVO vo:list){ 
 		%>
 			<li class="goods_li">
 				<a href="goods_detail.jsp?no=<%=vo.getNo()%>">
