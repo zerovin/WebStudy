@@ -1,0 +1,59 @@
+<!--
+	position : relative / absolute
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.container{
+		width:300px;
+		height:300px;
+		border:1px solid #CCC;
+		position:relative; /* 좌표점을 div.container안에 있는 좌표 이용*/
+	}
+	.box{
+		width:50px;
+		height:50px;
+		background-color:lightskyblue;
+		position:absolute;
+	}
+	.a{
+		top:0;
+		left:0;
+	}
+	.b{
+		top:0;
+		right:0;
+	}
+	.c{
+		bottom:0;
+		left:0;
+	}
+	.d{
+		bottom:0;
+		right:0;
+	}
+	.e{
+		top:100px;
+		left:100px;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box a"></div> <!-- class : 공통 적용 CSS가 존재 -->
+		<div class="box b"></div> <!-- class : 이름 여러개 사용가능, id는 하나만 -->
+		<div class="box c"></div>
+		<div class="box d"></div>
+		<div class="box e"></div>
+		<!-- 
+			<div class="a" class="b" class="c"></div> => 적용 불가
+			=> 한개의 태그에 같은 속성 사용불가
+		       자바로 따지면 태그:클래스 / 속성:멤버변수
+			=> <div class="a b c"></div>
+		-->
+	</div>
+</body>
+</html>
