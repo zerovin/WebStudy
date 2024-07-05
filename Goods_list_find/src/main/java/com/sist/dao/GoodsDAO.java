@@ -89,7 +89,7 @@ public class GoodsDAO {
 				ps=conn.prepareStatement(sql);
 			}else {
 				sql="SELECT CEIL(COUNT(*)/12.0) FROM goods_all "
-						+ "WHERE goods_name LIKE '%'||?||'%')";
+						+ "WHERE goods_name LIKE '%'||?||'%'";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, word);
 			}
