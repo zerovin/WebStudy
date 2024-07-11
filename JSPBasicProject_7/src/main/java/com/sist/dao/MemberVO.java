@@ -5,5 +5,5 @@ import lombok.Data;
 // application(getRealPath), pageContext, out
 @Data
 public class MemberVO {
-	private String id, name, pwd;
+	private String id, name, pwd, msg;
 }

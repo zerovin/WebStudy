@@ -17,13 +17,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
+	<div class="wrapper">
 		<ul class="goods_list">
 			<%
 				for(GoodsVO vo:list){
 			%>
 				<li class="goods_li">
-					<a href="goods_detail.jsp?no=<%=vo.getNo()%>">
+					<a href="../main/main.jsp?mode=4&no=<%=vo.getNo()%>">
 						<img src="<%=vo.getPoster() %>" alt="<%=vo.getName() %>">
 						<div class="text_box">
 							<p class="name"><%=vo.getName() %></p>

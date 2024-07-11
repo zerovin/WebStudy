@@ -15,5 +15,5 @@ HIT	NUMBER(38,0)
 @Data
 public class GoodsVO {
 	private int no, discount, hit;
-	private String name, sub, price, first_price, delivery, poster;
+	private String name, sub, price, firstPrice, delivery, poster;
 }

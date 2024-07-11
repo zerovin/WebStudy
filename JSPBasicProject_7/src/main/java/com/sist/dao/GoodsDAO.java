@@ -15,6 +15,15 @@ public class GoodsDAO {
 		return dao;
 	}
 	
+	/*
+ 	try {
+		conn=dbConn.getConnection();
+	}catch(Exception ex) {
+		ex.printStackTrace();
+	}finally {
+		dbConn.disConnection(conn, ps);
+	} 
+	 */
 	public List<GoodsVO> goodsListData(int page){
 		List<GoodsVO> list=new ArrayList<GoodsVO>();
 		try {
@@ -66,5 +75,33 @@ public class GoodsDAO {
 		}
 		return total;
 			
+	}
+	
+	public GoodsVO goodsDetailData(int no) {
+		GoodsVO vo=new GoodsVO();
+		try {
+			conn=dbConn.getConnection();
+			String sql="SELECT no, goods_poster, goods_name, goods_sub, goods_price, goods_discount, goods_delivery, NVL(goods_first_price,' ') "
+					+ "FROM goods_all "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setPoster(rs.getString(2));
+			vo.setName(rs.getString(3));
+			vo.setSub(rs.getString(4));
+			vo.setPrice(rs.getString(5));
+			vo.setDiscount(rs.getInt(6));
+			vo.setDelivery(rs.getString(7));
+			vo.setFirstPrice(rs.getString(8));
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			dbConn.disConnection(conn, ps);
+		}
+		return vo;
 	}
 }
