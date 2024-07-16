@@ -1,35 +1,30 @@
 package com.sist.dao;
-import java.util.*;
 import java.sql.*;
+import java.util.*;
 import javax.sql.*;
 import javax.naming.*;
-public class SeoulDAO {
+public class FoodDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	private static SeoulDAO dao;
+	private static FoodDAO dao;
 	
-	//싱글턴
-	public static SeoulDAO newInstance() {
+	public static FoodDAO newInstance() {
 		if(dao==null) {
-			dao=new SeoulDAO();
+			dao=new FoodDAO();
 		}
 		return dao;
 	}
 	
-	//톰캣이 미리 생성한 Connection의 주소를 읽어서 사용
-	//POOL 영역에 10개 생성(maxIdle)
 	public void getConnection() {
 		try {
-			Context init=new InitialContext(); //탐색기 열기
+			Context init=new InitialContext();
 			Context c=(Context)init.lookup("java://comp//env");
 			DataSource ds=(DataSource)c.lookup("jdbc/oracle");
 			conn=ds.getConnection();
-			//보안우수 - server.xml은 서버 관리자만 볼 수 있다
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
-	//반환 => POOL (Connection 객체 관리 영역)
 	public void disConnection() {
 		try {
 			if(ps!=null) {
@@ -41,15 +36,14 @@ public class SeoulDAO {
 		}catch(Exception ex) {}
 	}
 	
-	//목록
-	public List<LocationVO> seoulLocationListData(int page){
-		List<LocationVO> list=new ArrayList<LocationVO>();
+	public List<FoodVO> foodListData(int page){
+		List<FoodVO> list=new ArrayList<FoodVO>();
 		try {
 			getConnection();
-			String sql="SELECT no, title, poster, num "
-					+ "FROM (SELECT no, title, poster, rownum as num "
-					+ "FROM (SELECT /*+ INDEX_ASC(seoul_location sl_no_pk)*/no, title, poster "
-					+ "FROM seoul_location)) "
+			String sql="SELECT fno, poster, name, num "
+					+ "FROM (SELECT fno, poster, name, rownum as num "
+					+ "FROM (SELECT /*+ INDEX_ASC(food_house fh_fno_pk)*/fno, poster, name "
+					+ "FROM food_house)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=12;
@@ -59,10 +53,10 @@ public class SeoulDAO {
 			ps.setInt(2, end);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
-				LocationVO vo=new LocationVO();
-				vo.setNo(rs.getInt(1));
-				vo.setTitle(rs.getString(2));
-				vo.setPoster(rs.getString(3));
+				FoodVO vo=new FoodVO();
+				vo.setFno(rs.getInt(1));
+				vo.setPoster(rs.getString(2).replace("https","http"));
+				vo.setName(rs.getString(3));
 				list.add(vo);
 			}
 			rs.close();
@@ -73,13 +67,11 @@ public class SeoulDAO {
 		}
 		return list;
 	}
-	
-	//전체페이지
-	public int seoulLocationTotalPage() {
+	public int foodTotalPage() {
 		int total=0;
 		try {
 			getConnection();
-			String sql="SELECT CEIL(COUNT(*)/12.0) FROM seoul_location";
+			String sql="SELECT CEIL(COUNT(*)/12.0) FROM food_house";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
@@ -93,22 +85,30 @@ public class SeoulDAO {
 		return total;
 	}
 	
-	//상세
-	public LocationVO seoulDetailData(int no) {
-		LocationVO vo=new LocationVO();
+	/*
+	private int fno;
+	private String name, type, phone, address, theme, poster, content;
+	private double score; 
+	 */
+	public FoodVO foodDetailData(int fno) {
+		FoodVO vo=new FoodVO();
 		try {
 			getConnection();
-			String sql="SELECT no, title, poster, msg, address "
-					+ "FROM seoul_location "
-					+ "WHERE no="+no;
+			String sql="SELECT name, type, phone, address, theme, poster, content, score, fno "
+					+ "FROM food_house "
+					+ "WHERE fno="+fno;
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
-			vo.setNo(rs.getInt(1));
-			vo.setTitle(rs.getString(2));
-			vo.setPoster(rs.getString(3));
-			vo.setMsg(rs.getString(4));
-			vo.setAddress(rs.getString(5));
+			vo.setName(rs.getString(1));
+			vo.setType(rs.getString(2));
+			vo.setPhone(rs.getString(3));
+			vo.setAddress(rs.getString(4));
+			vo.setTheme(rs.getString(5));
+			vo.setPoster(rs.getString(6).replace("https", "http"));
+			vo.setContent(rs.getString(7));
+			vo.setScore(rs.getDouble(8));
+			vo.setFno(rs.getInt(9));
 			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
