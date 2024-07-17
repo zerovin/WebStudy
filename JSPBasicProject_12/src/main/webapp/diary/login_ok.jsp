@@ -29,6 +29,6 @@
 		session.setAttribute("sex", vo.getSex());
 		
 		//diary로 이동
-		response.sendRedirect("diary.jsp");
+		response.sendRedirect("middle.jsp");
 	}
 %>
