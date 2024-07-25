@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
 	MVC - HTML / Java : 분리해서 사용
 	    - 소스가 적어진다, 파일수가 적어진다 (X)
@@ -42,10 +43,30 @@
 	      <h1><a href="../main/main.do">맛집 AND 서울여행</a></h1>
 	    </div>
 	    <div class="fl_right">
-	      <ul class="inline">
-	        <li><i class="fa-solid fa-user"></i><input type="text" class="input-sm" placeholder="아이디"></li>
-	        <li><i class="fa-solid fa-lock"></i><input type="password" class="input-sm" placeholder="비밀번호"></li>
-	      </ul>
+	    <%--
+	    	EL 
+	    	 request.setAttribute("id",값)
+	    	 => ${id} = request.getAttribute("id");
+	    	    ${requestScope.id} => requestScope 생략가능
+	    	        
+	    	 session.setAttribute("id",값)
+	    	 => ${id} = session.getAttribute("id");
+	    	    ${sessionScope.id} => sessionScope 생략가능
+	    	 => session보다 request가 우선순위이기 때문에 가급적 sessionScope 사용
+	     --%>
+	      <c:if test="${sessionScope.id==null}">
+		      <ul class="inline">
+		        <li><i class="fa-solid fa-user"></i><input type="text" class="input-sm" placeholder="아이디" style="width:120px;"></li>
+		        <li><i class="fa-solid fa-lock"></i><input type="password" class="input-sm" placeholder="비밀번호" style="width:120px;"></li>
+		        <li><input type="image" src="../main/login.png" style="width:100px;height:25px;"></li>
+		      </ul>
+	      </c:if>
+	      <c:if test="${sessionScope.id!=null}">
+		      <ul class="inline">
+		        <li>${sessionScope.name}님 로그인되었습니다</li>
+		        <li><input type="image" src="../main/login.png" style="width:100px;height:25px;"></li>
+		      </ul>
+	      </c:if>
 	    </div>
 	  </header>
 	</div>
@@ -64,7 +85,9 @@
 	        <ul>
 	          <li><a href="../food/list.do">맛집 목록</a></li>
 	          <%-- Controller를 찾을 때 URL패턴 => .do --%>
-	          <li><a href="pages/full-width.html">맛집 예약</a></li>
+	          <c:if test="${sessionScope.id!=null}">
+	          	<li><a href="pages/full-width.html">맛집 예약</a></li>
+	          </c:if>
 	          <li><a href="../food/find.do">지역별 맛집 찾기</a></li>
 	          <li><a href="pages/sidebar-left.html">맛집 뉴스</a></li>
 	        </ul>
@@ -80,14 +103,23 @@
 	      </li>
 	      <li><a class="drop" href="#">커뮤니티</a>
 	        <ul>
-	          <li><a href="pages/gallery.html">자유게시판</a></li>
+	          <li><a href="../board/list.do">자유게시판</a></li>
 	          <li><a href="pages/full-width.html">공지사항</a></li>
-	          <li><a href="pages/sidebar-left.html">묻고 답하기</a></li>
-	          <li><a href="pages/sidebar-left.html">실시간 채팅</a></li>
+	          <c:if test="${sessionScope.id!=null}">
+	          	<li><a href="pages/sidebar-left.html">묻고 답하기</a></li>
+	          	<li><a href="pages/sidebar-left.html">실시간 채팅</a></li>
+	          </c:if>
 	        </ul>
 	      </li>
 	      <li><a href="#">스토어</a></li>
-	      <li><a href="#">마이페이지</a></li>
+	      <c:if test="${sessionScope.id!=null}">
+	      	<c:if test="${sessionScope.admin=='n'}">
+	      		<li><a href="#">마이페이지</a></li>
+	      	</c:if>
+	      	<c:if test="${sessionScope.admin=='y'}">
+	      		<li><a href="#">관리자페이지</a></li>
+	      	</c:if>
+	      </c:if>
 	    </ul>
 	  </nav>
 	</div>

@@ -2,6 +2,8 @@ package com.sist.model;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+
+import com.sist.commons.CommonsModel;
 import com.sist.controller.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -30,6 +32,7 @@ public class SeoulModel {
 		request.setAttribute("startpage", startpage);
 		request.setAttribute("endpage", endpage);
 		request.setAttribute("main_jsp", "../seoul/location.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 }

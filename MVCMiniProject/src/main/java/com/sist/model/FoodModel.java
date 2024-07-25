@@ -5,6 +5,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -51,6 +52,7 @@ public class FoodModel {
 		request.setAttribute("main_jsp", "../food/list.jsp");
 		
 		// jsp파일 지정 => include된 경우 main.jsp로 이동
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp"; 
 	}
 	
@@ -93,6 +95,7 @@ public class FoodModel {
 		
 		request.setAttribute("addr2", addr2);
 		request.setAttribute("main_jsp", "../food/detail.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -136,6 +139,7 @@ public class FoodModel {
 		request.setAttribute("fd", guList[Integer.parseInt(gu)]);
 		request.setAttribute("count", count);
 		request.setAttribute("main_jsp", "../food/find.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 	// 맛집 예약
