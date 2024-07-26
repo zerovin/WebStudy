@@ -1,6 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sist.dao.*"%>
+    pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*"%>
 <%-- 자바로부터 데이터를 읽어온다 --%>
 <%
 	//1.사용자로부터 페이지 번호를 받는다

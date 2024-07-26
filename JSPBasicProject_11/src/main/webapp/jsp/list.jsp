@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sist.dao.*"%>
+    pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*"%>
 <%--
 	데이터관리 - 지속적으로 상태 관리
 	데이터가 변경되는 상태 => JavaScript

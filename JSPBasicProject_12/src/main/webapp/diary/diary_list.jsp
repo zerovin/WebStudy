@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.sist.dao.*"%>
+    pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*"%>
 <%--
 	데이터 전송 - 사용 후 버리는 데이터
 	             => <form>, <a>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, java.text.*, com.sist.dao.*"%>
+    pageEncoding="UTF-8" import="java.util.*, java.text.*,com.sist.dao.*"%>
 <%
 	DiaryService dao=DiaryService.newInstance();
 	String[] strWeek={"일","월","화","수","목","금","토"};
