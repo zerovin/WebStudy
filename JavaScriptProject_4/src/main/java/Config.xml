@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Connection 관련 -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+ 	<!-- 
+ 		properties?, settings?, typeAliases?, typeHandlers?, 
+        objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, 
+        environments?, databaseIdProvider?, mappers?
+        
+        위 xml태그는 MyBatis에서만 사용가능 => 사용자 정의 태그
+        MyBatis : Mapper(데이터베이스만 연결) => 실무 DAO코드간결
+        ? = 사용해도 안해도 됨
+            ? 없으면 default, 반드시 한번은 사용해야함
+        * = 0번이상 사용 
+        + = 한번이상 사용
+        
+        주로 사용하는 태그
+        properties? : properties파일 읽기, 오라클 정보
+        settings? : 캐시메모리, 자주 사용하는 SQL문장 저장해서 사용
+        typeAliases? : VO 등록
+        environments? : 오라클 연결하는 정보 전송
+        mappers? : SQL문장 처리
+        
+        1. 대소문자 구분
+        2. 최상위 태그 필수
+        3. 속성값 = "", 지정된 속성만 사용가능
+        4. 여는태그, 닫는태그 동일
+        5. 태그 사용의 순서가 존재 *Content Model
+        
+        프로젝트 패키지
+        1. com.sist.model => -model
+        2. com.sist.dao => -DAO
+        3. com.sist.vo => -VO
+        4. com.sist.mapper => -mapper.xml
+        5. com.sist.manager => -Manager, API
+ 	 -->
+ 	 
+ 	 <!-- VO등록 -->
+ 	 <typeAliases> <!-- VO 생성시마다 등록 -->
+ 	 	<typeAlias type="com.sist.dao.EmpVO" alias="EmpVO"/>
+ 	 	<typeAlias type="com.sist.dao.BoardVO" alias="BoardVO"/>
+ 	 </typeAliases>
+ 	 
+ 	 <!-- Connection -->
+ 	 <environments default="development"> <!-- "(environment)+". -->
+ 	 	<environment id="development"> <!--  "(transactionManager,dataSource)" -->
+ 	 		<transactionManager type="JDBC"/>
+ 	 		<!-- 
+ 	 			COMMIT / ROLLBACK
+ 	 			JDBC = AutoCommit 사용
+ 	 			catch = Rollback
+ 	 			
+ 	 			JNDI(수동 커밋)도 사용가능
+ 	 		 -->
+ 	 		<dataSource type="POOLED"> <!-- mybatis > org.apache.ibatis.datasource.pooled > PooledDataSouce  -->
+ 	 			<!-- 
+ 	 				POOLED = DBCP = default : maxActive:8 maxIdle:8
+ 	 				UNPOOLED = 일반 JDBC
+ 	 			 -->
+ 	 			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/> <!-- setDriver 값 지정 -->
+ 	 			<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> <!-- setUrl 값 지정 -->
+ 	 			<property name="username" value="hr"/> <!-- setUsername 값 지정 -->
+ 	 			<property name="password" value="happy"/> <!-- setPassword 값 지정 -->
+ 	 		</dataSource>
+ 	 	</environment>
+ 	 </environments>
+ 	 
+ 	 <!-- SQL문장 읽기 -->
+ 	 <mappers> <!-- 테이블마다 한개씩 생성 -->
+ 	 	<mapper resource="com/sist/dao/emp-mapper.xml"/>
+ 	 	<mapper resource="com/sist/dao/board-mapper.xml"/>
+ 	 </mappers>
+ </configuration>

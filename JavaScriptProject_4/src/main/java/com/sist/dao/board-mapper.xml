@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.board-mapper">
+	<!-- 목록 <select> -->
+	<!-- 
+		매개변수
+		  - 1개 => parameterType="일반 데이터형"
+		  - 2개이상 => 설정은 하나만 가능, 모아서 설정
+		             1. BoardVO - VO에 있는 데이터만 매개변수로 쓸 경우
+		             2. BoardVO에 없는 데이터 설정은 Map으로 모아서 
+		                ex) start / end => Map *hashmap => java.util.map
+		                    UPDATE => BoardVO
+		                    INSERT => BoardVO
+		***동적 SQL : 다중 조건
+		             ex)checkbox 경우의 수
+		   Spring + MyBatis + Model => JSP
+		   SpringBoot + JPA + Model => React/Vue ===> MSA CI/CD
+		   
+		JDBC => DBCP => ORM
+		                라이브러리 (Mybatis / hibernate(JPA)) => DataSet
+	 -->
+	<select id="boardListData" resultType="BoardVO" parameterType="hashmap">
+		SELECT no, subject, name, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, hit, num 
+		FROM (SELECT no, subject, name, regdate, hit, rownum as num 
+		FROM (SELECT /*+ INDEX_DESC(board board_no_pk)*/no, subject, name, regdate, hit
+		FROM board)) 
+		WHERE num BETWEEN #{start} AND #{end}
+		<!-- 
+			TO_CHAR(regdate, 'YYYY-MM-DD') as dbday
+			 =>setter로 찾기 때문에 setTo_CHAR~는 없음, as 받을 변수명 지정해줘서 받음
+			 
+			#{"키"} 
+			  map.put("start",1) => ${start} => map.get("start")
+			  map.put("end",10) => ${end} => map.get("end")
+			Map parameterType="hashmap"
+			  #{start} = map.get("start")
+			VO parameterType="-VO"
+		      #{name} = vo.getName()
+		      
+		    #{} => 문자일 경우
+		           ex) #{name} = 'vo.getName()'
+		    ${} => table명, column명
+		           ex) ${name} 
+		-->
+	</select>
+	<!-- 총페이지 -->
+	<select id="boardRowCount" resultType="int">
+		SELECT COUNT(*) FROM board
+	</select>
+	<!-- 상세 <select> -->
+	<update id="hitIncrement" parameterType="int">
+		UPDATE board SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="boardDetailData" resultType="BoardVO" parameterType="int">
+		SELECT no, name, subject, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, hit 
+		FROM board
+		WHERE no=#{no}
+	</select>
+	<!-- 추가 <insert> -->
+	<insert id="boardInsert" parameterType="BoardVO">
+		INSERT INTO board VALUES(
+			board_no_seq.nextval, #{name}, #{subject}, #{content}, #{pwd}, SYSDATE, 0
+		)
+	</insert>
+	<!-- 수정 <update> -->
+	<!-- 삭제 <delete> -->
+	<select id="boardGetPassword" resultType="String" parameterType="int">
+		SELECT pwd FROM board
+		WHERE no=#{no}
+	</select>
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM board
+		WHERE no=#{no}
+	</delete>
+	<!--
+		태그 안에 sql문장은 한개만 실행가능
+		sql문장 두개 이상 사용시 <statement>
+		중복 sql문장 사용시 <sql> 
+	-->
+</mapper> 
