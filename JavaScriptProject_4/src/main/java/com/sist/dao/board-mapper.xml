@@ -67,6 +67,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	<!-- 수정 <update> -->
+	<update id="boardUpdate" parameterType="BoardVO">
+		UPDATE board SET
+		name=#{name}, subject=#{subject}, content=#{content}
+		WHERE no=#{no}
+	</update>
 	<!-- 삭제 <delete> -->
 	<select id="boardGetPassword" resultType="String" parameterType="int">
 		SELECT pwd FROM board

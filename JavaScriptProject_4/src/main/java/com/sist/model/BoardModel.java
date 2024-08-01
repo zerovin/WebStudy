@@ -100,4 +100,37 @@ public class BoardModel {
 		request.setAttribute("vo", vo);
 		return "update.jsp";
 	}
+	
+	@RequestMapping("board/update_ok.do")
+	public void board_update_ok(HttpServletRequest request, HttpServletResponse response) {
+		//void 화면이동을 자바스크립트에서 처리, Spring
+		String no=request.getParameter("no");
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		String pwd=request.getParameter("pwd");
+		
+		BoardVO vo=new BoardVO();
+		vo.setNo(Integer.parseInt(no));
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		
+		//데이터베이스 연동
+		boolean bCheck=BoardDAO.boardUpdate(vo);
+		
+		//자바스크립트에 데이터 전송 yes/no
+		String result="";
+		if(bCheck==true) {
+			result="yes";
+		}else {
+			result="no";
+		}
+		try {
+			PrintWriter out=response.getWriter(); //자바스크립트가 받을 때는 PrintWriter, jsp가 받을때는 setAttribute
+			out.write(result);
+		}catch(Exception ex) {}
+		
+	}
 }
