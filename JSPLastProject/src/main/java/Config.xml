@@ -7,7 +7,9 @@
   
  	 <!-- VO등록 MyBatis에서 값 저장 -->
  	 <typeAliases>
- 	 	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO" />
+ 	 	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
+ 	 	<typeAlias type="com.sist.vo.BoardVO" alias="BoardVO"/>
+ 	 	<typeAlias type="com.sist.vo.DataBoardVO" alias="DataBoardVO"/>
  	 </typeAliases>
  	 
  	 <!-- connection 관련 : getConnection/disConnection -->
@@ -24,5 +26,7 @@
  	 </environments>
  	 <mappers>
  	 	<mapper resource="com/sist/mapper/member-mapper.xml"/>
+ 	 	<mapper resource="com/sist/mapper/board-mapper.xml"/>
+ 	 	<mapper resource="com/sist/mapper/databoard-mapper.xml"/>
  	 </mappers>
  </configuration>
