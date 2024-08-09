@@ -126,6 +126,14 @@ public class DataBoardDAO {
 		}
 		return vo;
 	}
+	
+	
+	/*
+	 <delete id="databoardReplyDelete" parameterType="int">
+	 	DELETE FROM project_board_reply
+	 	WHERE bno=#{no}
+	 </delete> 
+	 */
 	//실제삭제
 	public static String databoardDelete(int no, String pwd) {
 		String result="no";
@@ -135,6 +143,7 @@ public class DataBoardDAO {
 			String db_pwd=session.selectOne("databoardGetPassword", no);
 			if(db_pwd.equals(pwd)) {
 				result="yes";
+				session.delete("databoardReplyDelete", no); //게시물 삭제시 댓글 삭제 후 게시물 삭제, 참조
 				session.delete("databoardDelete", no);
 				session.commit();
 			}

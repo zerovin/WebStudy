@@ -48,7 +48,7 @@
 	 <select id="databoardListData" parameterType="hashmap" resultType="DataBoardVO">
 	 	SELECT no, subject, name, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, hit, num 
  		FROM (SELECT no, subject, name, regdate, hit, rownum as num 
- 		FROM (SELECT /*+ INDEX_DESC(project_board pd_no_pk)*/no, subject, name, regdate, hit 
+ 		FROM (SELECT /*+ INDEX_DESC(project_databoard pd_no_pk)*/no, subject, name, regdate, hit 
  		FROM project_databoard))
  		WHERE num BETWEEN #{start} AND #{end}
 	 </select>
@@ -87,6 +87,10 @@
 	 <delete id="databoardDelete" parameterType="int">
 	 	DELETE FROM project_databoard
 	 	WHERE no=#{no}
+	 </delete>	 
+	 <delete id="databoardReplyDelete" parameterType="int"> <!-- 게시물 삭제시 댓글 삭제 후 게시물 삭제, 참조 -->
+	 	DELETE FROM project_board_reply
+	 	WHERE bno=#{no}
 	 </delete>
 	 
 	 <!-- ***동적 쿼리 : 검색 -->

@@ -68,7 +68,117 @@ $(function(){ //window.onload - 모든 프로그램은 시작점이 있다, 일�
 			}
 		})
 	})
+	
+	//댓글 읽기
+	let bno=$('.del_no').text()
+	replyList(bno)
+	
+	//댓글 쓰기
+	$('#writeBtn').click(function(){
+		let msg=$('#msg').val()
+		let bno=$('.del_no').text()
+		if(msg.trim()===''){
+			$('#msg').focus()
+			return
+		}
+		$.ajax({
+			type:'post',
+			url:'../reply/reply_insert.do',
+			data:{"bno":bno, "msg":msg},
+			success:function(result){
+				let res=result
+				if(res==='OK'){
+					replyList(bno)				
+				}
+				$('#msg').val("")
+			},
+			error:function(request, status, error){
+				console.log(error)
+			}
+		})
+	})
+	
+
 })
+
+//댓글 수정
+function replyUpdate(rno){
+	$('.updates').hide()
+	$('#m'+rno).show()
+}
+function replyUpdateData(rno){
+	let msg=$('#msg'+rno).val()
+	$.ajax({
+		type:'post',
+		url:'../reply/reply_update.do',
+		data:{"rno":rno, "msg":msg},
+		success:function(result){
+			if(result==="OK"){
+				let bno=$('.del_no').text()
+				replyList(bno)
+			}
+			$('#m'+rno).hide()
+		},
+		error:function(request, status, error){
+			console.log(error)
+		}
+	})
+}
+//댓글 삭제
+function replyDelete(rno, bno){
+	$.ajax({
+		type:'post',
+		url:'../reply/reply_delete.do',
+		data:{"rno":rno},
+		success:function(result){
+			if(result=='OK'){
+				replyList(bno)
+			}
+		},
+		error:function(request, status, error){
+			console.log(error)
+		}
+	})
+}
+function replyList(bno){
+	$.ajax({
+		type:'POST',
+		url:'../reply/reply_list.do',
+		data:{"bno":bno},
+		success:function(json){
+			json=JSON.parse(json)
+			let html='';
+			json.map(function(reply){
+				html+='<table class="table">'
+				html+='<tr>'
+				html+='<td class="text-left">◑'+reply.name+'('+reply.day+')</td>'
+				html+='<td class="text-right">'
+					if(reply.id===reply.sessionId){
+						html+='<span class="btn btn-xs btn-success ups" onclick="replyUpdate('+reply.rno+')">수정</span>&nbsp;'
+						html+='<input type="button" class="btn btn-xs btn-warning" value="삭제" onclick="replyDelete('+reply.rno+','+reply.bno+')">'
+					}
+				html+='</td>'
+				html+='</tr>'
+				html+='<tr>'
+				html+='<td colspan="2">'
+				html+='<pre style="white-space:wrap;border:none;background:white">'+reply.msg+'</pre>'
+				html+='</td>'
+				html+='</tr>'
+				html+='<tr class="updates" id="m'+reply.rno+'" style="display:none;">'
+				html+='<td>'
+				html+='<textarea rows="4" cols="70" id="msg'+reply.rno+'" style="float:left">'+reply.msg+'</textarea>'
+				html+='<input type="button" value="댓글수정" onclick="replyUpdateData('+reply.rno+')" style="width:100px;height:85px;background-color:green;color:black;">'
+				html+='</td>'
+				html+='</tr>'
+				html+='</table>'
+			})
+			$('#reply').html(html)
+		},
+		error:function(request, status, error){
+			console.log(error)
+		}
+	})
+}
 </script>
 </head>
 <body>
@@ -122,6 +232,22 @@ $(function(){ //window.onload - 모든 프로그램은 시작점이 있다, 일�
 	  	    			</td>
 	  	    		</tr>
 	  	    	</table>
+	  	    	<div style="height:20px"></div>
+	  	    	<table class="table">
+	  	    		<tr>
+	  	    			<td id="reply"></td>
+	  	    		</tr>
+	  	    	</table>
+	  	    	<c:if test="${sessionScope.id!=null}">
+		  	    	<table class="table">
+		  	    		<tr>
+		  	    			<td>
+		  	    				<textarea rows="4" cols="70" id="msg" style="float:left"></textarea>
+		  	    				<input type="button" value="댓글쓰기" style="width:100px;height:85px;background-color:green;color:black;" id="writeBtn">
+		  	    			</td>
+		  	    		</tr>
+		  	    	</table>
+	  	    	</c:if>
 	  	    </div>
 		</main>
 	</div>

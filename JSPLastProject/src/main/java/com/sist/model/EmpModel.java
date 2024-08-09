@@ -35,4 +35,23 @@ public class EmpModel {
 		request.setAttribute("list", list);
 		return "find_ok.jsp";
 	}
+	
+	@RequestMapping("emp/emp_list.do")
+	public String emp_list2(HttpServletRequest request, HttpServletResponse response) {
+		List<String> list=EmpDAO.empEnameList();
+		request.setAttribute("list", list);
+		return "emp_list.jsp";
+	}
+	
+	@RequestMapping("emp/emp_find.do")
+	public String emp_find2(HttpServletRequest request, HttpServletResponse response) {
+		//ajax에서 배열로 보낸 경우 처리 ex)다중검색, 체크박스
+		//검색 - 해당 jsp에서 페이지변경없이 바로 출력 => ajax
+		String[] names=request.getParameterValues("names[]"); //배열로 보내면 배열로 받아야 햄
+		Map map=new HashMap();
+		map.put("nameArr", names);
+		List<EmpVO> list=EmpDAO.empFindData(map);
+		request.setAttribute("list", list);
+		return "emp_find.jsp";
+	}
 }
