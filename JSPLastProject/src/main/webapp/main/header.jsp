@@ -103,7 +103,8 @@ $(function(){
 	      </c:if>
 	      <li><a class="drop" href="#">맛집</a>
 	        <ul>
-	          <li><a href="pages/gallery.html">맛집찾기</a></li>
+	          <li><a href="../food/list.do">맛집목록</a></li>
+	          <li><a href="../food/find.do">맛집찾기</a></li>
 	          <c:if test="${sessionScope.id!=null}"> <!-- 로그인이 된 상태라면 -->
 	          	<li><a href="pages/full-width.html">맛집예약</a></li>
 	          </c:if>
@@ -119,9 +120,10 @@ $(function(){
 	      </li>
 	      <li><a class="drop" href="#">스토어</a>
 	        <ul>
-	          <li><a href="pages/gallery.html">전체상품</a></li>
-	          <li><a href="pages/full-width.html">베스트상품</a></li>
-	          <li><a href="pages/sidebar-left.html">특가상품</a></li>
+	          <li><a href="../goods/list.do">전체상품</a></li>
+	          <li><a href="../goods/list.do?cno=2">베스트상품</a></li>
+	          <li><a href="../goods/list.do?cno=3">신상품</a></li>
+	          <li><a href="../goods/list.do?cno=4">특가상품</a></li>
 	          <li><a href="pages/sidebar-left.html">가격비교</a></li>
 	        </ul>
 	      </li>
