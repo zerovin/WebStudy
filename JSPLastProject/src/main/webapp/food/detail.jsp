@@ -7,6 +7,147 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	replyList(${param.fno}) //detail.do?fno=2&type=1
+	$('#writeBtn').on('click',function(){
+		let msg=$('#msg').val();
+		if(msg.trim()===""){
+			$('#msg').focus()
+			return
+		}
+		let cno=$(this).attr("data-cno")
+		$.ajax({
+			type:'POST',
+			url:'../all_reply/insert.do',
+			data:{"cno":cno, "type":1, "msg":msg},
+			success:function(result){
+				if(result=="OK"){
+					replyList(cno)
+				}else{
+					alert(result);
+				}
+			},
+			error:function(request, status, error){
+				console.log(error)
+			}
+		})
+	})
+	
+	//찜하기
+	//let bCheck=false;
+	$('#jjimBtn').on('click',function(){
+		let cno=$(this).attr('data-cno')
+		//ajax 이용 type=1
+		$.ajax({
+			type:'POST',
+			url:'../all_jjim/insert.do',
+			data:{"cno":cno, "type":1},
+			success:function(result){
+				if(result==="OK"){
+					location.href="../food/detail.do?fno="+cno+"&type=1"
+				}else{
+					alert(result)
+				}
+			},
+			error:function(request, status, error){
+				console.log(error)
+			}
+		})
+	})
+})
+
+//삭제
+function replyDelete(rno, cno){
+	$.ajax({
+		type:'POST',
+		url:'../all_reply/delete.do',
+		data:{"rno":rno},
+		success:function(result){
+			if(result=="OK"){
+				replyList(cno);
+			}else{
+				alert(result)
+			}
+		},
+		error:function(request, status, error){
+			console.log(error)
+		}
+	})
+}
+
+//수정
+function replyUpdate(rno){
+	$('.updates').hide()
+	$('#m'+rno).show()
+}
+function replyUpdateData(rno, cno){
+	let msg=$('#msg'+rno).val()
+	if(msg.trim()===""){
+		$('#msg'+rno).focus()
+		return
+	}
+	$.ajax({
+		type:'POST',
+		url:'../all_reply/update.do',
+		data:{"rno":rno, "msg":msg},
+		success:function(result){
+			if(result==="OK"){
+				replyList(cno)
+			}else{
+				alert(result)
+			}
+			$('#m'+rno).hide()
+		},
+		error:function(request, status, error){
+			console.log(error)
+		}
+	})
+}
+
+//목록
+function replyList(cno){
+	$.ajax({
+		type:'POST',
+		url:'../all_reply/list.do',
+		data:{"cno":cno, "type":1},
+		success:function(json){
+			json=JSON.parse(json)
+			let html='';
+			json.map(function(reply){
+				html+='<table class="table">'
+				html+='<tr>'
+				html+='<td class="text-left">◑'+reply.name+'('+reply.dbday+')</td>'
+				html+='<td class="text-right">'
+					if(reply.id===reply.sessionId){
+						html+='<span class="btn btn-xs btn-success ups" onclick="replyUpdate('+reply.rno+')">수정</span>&nbsp;'
+						html+='<input type="button" class="btn btn-xs btn-warning" value="삭제" onclick="replyDelete('+reply.rno+','+reply.cno+')">'
+					}
+				html+='</td>'
+				html+='</tr>'
+				html+='<tr>'
+				html+='<td colspan="2">'
+				html+='<pre style="white-space:wrap;border:none;background:white">'+reply.msg+'</pre>'
+				html+='</td>'
+				html+='</tr>'
+				html+='<tr class="updates" id="m'+reply.rno+'" style="display:none;">'
+				html+='<td>'
+				html+='<textarea rows="4" cols="70" id="msg'+reply.rno+'" style="float:left">'+reply.msg+'</textarea>'
+				html+='<input type="button" value="댓글수정" onclick="replyUpdateData('+reply.rno+','+reply.cno+')" style="width:100px;height:85px;background-color:green;color:black;">'
+				html+='</td>'
+				html+='</tr>'
+				html+='</table>'
+			})
+			$('#reply').html(html)
+			$('#msg').val("")
+		},
+		error:function(request, status, error){
+			console.log(error)
+		}
+	})
+}
+</script>
 </head>
 <body>
 	<div class="wrapper row3">
@@ -57,7 +198,12 @@
 	    			<td colspan="3" class="text-right">
 	    				<c:if test="${sessionScope.id!=null}">
 		    				<a href="" class="btn btn-xs btn-success">좋아요</a>
-		    				<a href="" class="btn btn-xs btn-warning">찜하기</a>
+		    				<c:if test="${check==false}">
+		    					<input type="button" class="btn btn-xs btn-warning" value="찜하기" id="jjimBtn" data-cno="${vo.fno}">
+		    				</c:if>
+		    				<c:if test="${check==true}">
+		    					<span type="button" class="btn btn-xs btn-default">찜하기</span>
+		    				</c:if>
 		    				<a href="" class="btn btn-xs btn-info">예약하기</a>
 	    				</c:if>	
 	    				<input type="button" class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
@@ -123,6 +269,26 @@
 		      	</c:forEach>
 		      </ul>
 		    </div>
+		    <div style="height:20px;"></div>
+		    <h2 class="sectiontitle">댓글</h2>
+		    <table class="table" id="reply_table">
+		    	<tbody>
+		    		<%-- 댓글출력 --%>
+		    		<tr>
+		    			<td id="reply">
+		    		</tr>
+		    	</tbody>
+		    </table>
+		    <c:if test="${sessionScope.id!=null}">
+		    	<table class="table">
+	  	    		<tr>
+	  	    			<td>
+	  	    				<textarea rows="4" cols="70" id="msg" style="float:left"></textarea>
+	  	    				<input type="button" value="댓글쓰기" style="width:100px;height:85px;background-color:green;color:black;" id="writeBtn" data-cno="${vo.fno}">
+	  	    			</td>
+	  	    		</tr>
+	  	    	</table>
+		    </c:if>
 	  	</main>
 	</div>
 </body>

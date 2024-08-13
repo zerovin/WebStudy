@@ -129,11 +129,10 @@ $(function(){
 	      </li>
 	      <li><a class="drop" href="#">여행</a>
 	        <ul>
-	          <li><a href="pages/gallery.html">명소</a></li>
-	          <li><a href="pages/full-width.html">자연 & 관광</a></li>
-	          <li><a href="pages/sidebar-left.html">호텔</a></li>
-	          <li><a href="pages/sidebar-left.html">쇼핑</a></li>
-	          <li><a href="pages/sidebar-left.html">날씨</a></li>
+	          <li><a href="../seoul/location.do">명소</a></li>
+	          <li><a href="../seoul/nature.do">자연 & 관광</a></li>
+	          <li><a href="../seoul/shop.do">쇼핑</a></li>
+	          <li><a href="../seoul/weather.do">날씨</a></li>
 	        </ul>
 	      </li>
 	      <li><a class="drop" href="#">커뮤니티</a>

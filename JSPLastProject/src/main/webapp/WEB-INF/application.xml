@@ -8,5 +8,8 @@
 	<bean id="music" class="com.sist.model.MusicModel"/>
 	<bean id="reply" class="com.sist.model.BoardReplyModel"/>
 	<bean id="food" class="com.sist.model.FoodModel"/>
-	<bean id="food" class="com.sist.model.GoodsModel"/>
+	<bean id="goods" class="com.sist.model.GoodsModel"/>
+	<bean id="seoul" class="com.sist.model.SeoulModel"/>
+	<bean id="allreply" class="com.sist.model.AllReplyModel"/>
+	<bean id="alljjim" class="com.sist.model.AllJjimModel"/>
 </beans>
