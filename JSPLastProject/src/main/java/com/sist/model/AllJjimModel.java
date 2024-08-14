@@ -24,6 +24,7 @@ public class AllJjimModel {
 		String result="";
 		try {
 			AllJjimDAO.allJjimInsert(map);
+			AllJjimDAO.jjimCountIncrement(map);
 			result="OK";
 		}catch(Exception ex) {
 			result=ex.getMessage();

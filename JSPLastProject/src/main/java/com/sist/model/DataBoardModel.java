@@ -14,12 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.vo.*;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 public class DataBoardModel {
 	@RequestMapping("databoard/insert.do")
 	public String databoard_insert(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("main_jsp", "../databoard/insert.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("databoard/insert_ok.do")
@@ -90,6 +92,7 @@ public class DataBoardModel {
 		request.setAttribute("today", today);
 		
 		request.setAttribute("main_jsp", "../databoard/list.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -100,6 +103,7 @@ public class DataBoardModel {
 		DataBoardVO vo=DataBoardDAO.databoardDetailData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../databoard/detail.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -170,6 +174,7 @@ public class DataBoardModel {
 		// setAttribute - 데이터를 request에 추가해서 jsp로 전송
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../databoard/update.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -290,6 +295,7 @@ public class DataBoardModel {
 		//결과값 전송
 		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../databoard/find.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 }

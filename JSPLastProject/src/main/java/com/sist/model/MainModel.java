@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import java.util.*;
 import com.sist.dao.*;
@@ -25,6 +26,8 @@ public class MainModel {
 		List<FoodVO> hitList=FoodDAO.foodHitTopData();
 		List<FoodVO> likeList=FoodDAO.foodLikeTopData();
 		List<FoodVO> jjimList=FoodDAO.foodJjimTopData();
+		
+		CommonsModel.footerPrint(request);
 		
 		request.setAttribute("cookieList", cookieList);
 		request.setAttribute("hitList", hitList);

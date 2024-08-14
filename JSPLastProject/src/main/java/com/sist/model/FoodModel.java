@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sist.vo.*;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 public class FoodModel {
@@ -46,6 +47,7 @@ public class FoodModel {
 		request.setAttribute("count", count);
 		
 		request.setAttribute("main_jsp", "../food/list.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -97,6 +99,7 @@ public class FoodModel {
 		request.setAttribute("type", type);
 		request.setAttribute("rList", rList);
 		request.setAttribute("main_jsp", "../food/detail.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -145,6 +148,7 @@ public class FoodModel {
 		request.setAttribute("fList", fList);
 		request.setAttribute("ss", ss);
 		request.setAttribute("main_jsp", "../food/find.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 }

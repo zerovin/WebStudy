@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.manager.WordManager;
@@ -34,6 +35,8 @@ public class BoardModel {
 	public String board_insert(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("main_jsp", "../board/insert.jsp");
 		//입력창만 보여준다
+		
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -85,6 +88,8 @@ public class BoardModel {
 		request.setAttribute("list", list);
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		request.setAttribute("main_jsp", "../board/list.jsp");
+		
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -99,6 +104,8 @@ public class BoardModel {
 		request.setAttribute("vo", vo);
 		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../board/detail.jsp");
+		
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -115,6 +122,8 @@ public class BoardModel {
 		BoardVO vo=BoardDAO.boardUpdateData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../board/update.jsp");
+		
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("board/update_ok.do")

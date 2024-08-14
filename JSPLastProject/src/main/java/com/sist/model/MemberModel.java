@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 
 import java.io.PrintWriter;
@@ -46,6 +47,7 @@ public class MemberModel {
 	public String member_join(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("main_jsp", "../member/join.jsp");
 		//ajax => 아이디중복체크, 우편번호 검색(daumAPI)
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 }

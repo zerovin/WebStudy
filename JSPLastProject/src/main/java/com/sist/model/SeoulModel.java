@@ -4,6 +4,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -38,6 +39,7 @@ public class SeoulModel {
 		request.setAttribute("sList", sList);
 		// 어떤 화면을 출력할지 설정
 		request.setAttribute("main_jsp", "../seoul/location.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -70,6 +72,7 @@ public class SeoulModel {
 		request.setAttribute("sList", sList);
 		// 어떤 화면을 출력할지 설정
 		request.setAttribute("main_jsp", "../seoul/nature.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	
@@ -102,6 +105,7 @@ public class SeoulModel {
 		request.setAttribute("sList", sList);
 		// 어떤 화면을 출력할지 설정
 		request.setAttribute("main_jsp", "../seoul/shop.jsp");
+		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 }
