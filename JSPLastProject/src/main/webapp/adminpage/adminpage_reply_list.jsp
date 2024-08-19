@@ -41,9 +41,9 @@
 			  			<td width="15%" class="text-center">${vo.name}</td>
 			  			<td width="20%" class="text-center">${vo.dbday}</td>
 			  			<td width="10%" class="text-center">${vo.hit}</td>
-			  			<td widtt="10%" class="text-center">
+			  			<td width="10%" class="text-center">
 			  				<c:if test="${vo.isreply==0}">
-			  					<a href="../adminpage/reply_insert.do?no=${vo.no}" class="btn btn-sm btn-danger">답변대기</a>	
+			  					<a href="../adminpage/adminpage_reply_insert.do?no=${vo.no}" class="btn btn-sm btn-danger">답변대기</a>	
 			  				</c:if>
 			  				<c:if test="${vo.isreply!=0}">
 			  					<span class="btn btn-sm btn-default">답변완료</span>

@@ -106,7 +106,7 @@ $(function(){
 	          <li><a href="../food/list.do">맛집목록</a></li>
 	          <li><a href="../food/find.do">맛집찾기</a></li>
 	          <c:if test="${sessionScope.id!=null}"> <!-- 로그인이 된 상태라면 -->
-	          	<li><a href="pages/full-width.html">맛집예약</a></li>
+	          	<li><a href="../reserve/reserve_main.do">맛집예약</a></li>
 	          </c:if>
 	          <li><a href="pages/sidebar-left.html">맛집추천</a></li>
 	        </ul>

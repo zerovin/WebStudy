@@ -49,7 +49,6 @@
 	
 	<!-- 좋아요 -->
 	<!-- 찜 -->
-	<!-- 예약 -->
 	<!-- 댓글 -->
 	<!-- 인근 맛집 -->
 	<select id="foodRearListData" resultType="FoodVO" parameterType="string">
@@ -69,5 +68,25 @@
 	</select>
 	<select id="foodFindTotalPage" resultType="int">
 		SELECT CEIL(COUNT(*)/20.0) FROM project_food_house WHERE address LIKE '%'||#{ss}||'%' 
+	</select>
+	
+	<!-- 예약 -->
+	<select id="foodTypeAllData" resultType="FoodVO" parameterType="string">
+		SELECT fno, poster, name, phone
+		FROM project_food_house
+		WHERE type LIKE '%'||#{type}||'%'
+		ORDER BY fno ASC
+	</select>
+	<select id="foodReserveDayData" resultType="string" parameterType="int">
+		SELECT rdays FROM project_food_house
+		WHERE fno=#{fno}
+	</select>
+	<select id="foodReserveTimeData" resultType="String" parameterType="int">
+		SELECT time FROM reserve_date
+		WHERE dno=#{dno}
+	</select>
+	<select id="foodTimeSelectData" resultType="String" parameterType="int">
+		SELECT time FROM reserve_time
+		WHERE tno=#{tno} 
 	</select>
 </mapper>
