@@ -152,5 +152,23 @@ public class ReplyBoardDAO {
 		return vo;
 	}
 	
-
+	/*
+	 <delete id="adminReplyDelete" parameterType="int">
+		DELETE FROM project_replyboard
+		WHERE no=#{no}
+	</delete> 
+	 */
+	public static void adminReplyDelete(int no) {
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(true);
+			session.delete("adminReplyDelete", no);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	}
 }

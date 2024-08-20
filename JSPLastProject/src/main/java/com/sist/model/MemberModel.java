@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sist.dao.*;
+import com.sist.manager.MailManager;
 import com.sist.vo.*;
 public class MemberModel {
 	@RequestMapping("member/login.do")
@@ -101,5 +102,53 @@ public class MemberModel {
 		vo.setPhone(phone1+")"+phone2);
 		MemberDAO.memberInsert(vo);
 		return "redirect:../main/main.do";
+	}
+	
+	@RequestMapping("member/idfind.do")
+	public String member_idfind(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("main_jsp", "../member/idfind.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("member/idfind_ok.do")
+	public void member_idfind_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		String name=request.getParameter("name");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
+		
+		MemberVO vo=new MemberVO();
+		vo.setName(name);
+		vo.setEmail(email);
+		//데이터베이스 연동
+		String result=MemberDAO.memberIdFindData(vo);
+		 
+		//ajax로 값 전송
+		try {
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
+	}
+	
+	@RequestMapping("member/pwdfind.do")
+	public String member_pwdfind(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("main_jsp", "../member/pwdfind.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("member/pwdfind_ok.do")
+	public void member_pwdfind_ok(HttpServletRequest request, HttpServletResponse response) {
+		String id=request.getParameter("id");
+		String result=MemberDAO.memberPwdFindData(id);
+		if(!result.equals("no")) {
+			MailManager m=new MailManager();
+			m.mailSender(result);
+		}
+		try {
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
 	}
 }

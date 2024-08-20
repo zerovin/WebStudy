@@ -46,4 +46,24 @@
  	 	name=#{name}, birthday=#{birthday}, post=#{post}, addr1=#{addr1}, addr2=#{addr2}, phone=#{phone}, email=#{email}, content=#{content}
  	 	WHERE id=#{id}
  	 </update>
+ 	 
+ 	 <!-- 아이디찾기 -->
+ 	 <select id="memberIdFindCount" resultType="int" parameterType="MemberVO">
+ 	 	SELECT COUNT(*) FROM project_member
+ 	 	WHERE name=#{name} AND email=#{email}
+ 	 </select>
+ 	 <select id="memberIdFindData" resultType="string" parameterType="MemberVO">
+ 	 	SELECT RPAD(SUBSTR(id,1,2),LENGTH(id),'*') FROM project_member
+ 	 	WHERE name=#{name} AND email=#{email}
+ 	 </select>
+ 	 
+ 	 <!-- 비밀번호 찾기 -->
+	 <select id="memberPwdFindCount" resultType="int" parameterType="string">
+ 	 	SELECT COUNT(*) FROM project_member
+ 	 	WHERE id=#{id}
+ 	 </select>
+ 	 <select id="memberPwdFindData" resultType="string" parameterType="string">
+ 	 	SELECT pwd FROM project_member
+ 	 	WHERE id=#{id}
+ 	 </select>
  </mapper>
