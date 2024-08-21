@@ -64,6 +64,7 @@ public class GoodsModel {
 		price=price.replaceAll("[^0-9]", "");
 		vo.setPrice(Integer.parseInt(price));
 		request.setAttribute("vo", vo);
+		request.setAttribute("type", cno);
 		request.setAttribute("main_jsp", "../goods/detail.jsp");
 		CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
