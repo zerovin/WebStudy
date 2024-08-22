@@ -14,6 +14,7 @@ import com.sist.vo.*;
 public class MypageModel {
 	@RequestMapping("mypage/mypage_main.do")
 	public String mypage_main(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("title", "마이페이지 홈");
 		request.setAttribute("mypage_jsp", "../mypage/mypage_home.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		CommonsModel.footerPrint(request);
@@ -92,4 +93,5 @@ public class MypageModel {
 		AllJjimDAO.JjimCancle(Integer.parseInt(jno));
 		return "redirect:../mypage/mypage_jjim.do";
 	}
+	
 }
